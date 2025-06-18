@@ -1,0 +1,33 @@
+﻿@model MLMModel.ReferralDto
+@{
+    ViewBag.Title = "Referral Tree";
+}
+
+<h2>Referral Tree for @Model.FullName</h2>
+
+@if (Model.Referrals != null && Model.Referrals.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Referral ID</th>
+                <th>Full Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var referral in Model.Referrals)
+            {
+                <tr>
+                    <td>@referral.UserId</td>
+                    <td>@referral.FullName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No referrals found.</p>
+}
+
+<a href="@Url.Action("Register", "User")" class="btn btn-primary">Register Another User</a>
